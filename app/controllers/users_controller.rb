@@ -25,19 +25,25 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    #complete this method
+    @user = User.create(user_params)
+    render json:@user.to_json
+
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    #complete this method
+    @user = User.find(current_user.to_i)
+    @user.update!(user_params)
+    flash[:notice] = "Updated Successfully"
+    redirect_to "/users/"+current_user
   end
 
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    #complete this method
+    user_id = current_user
+    User.delete(user_id.to_i)
   end
 
   private

@@ -3,10 +3,21 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		#complete this method
+		email = params[:session][:email]
+		password = params[:session][:password]
+		user = User.where(email: email, password: password).first()
+		if user != nil
+			flash[:notice] = "Login Successful"
+			cookies["logged_user"] = String(user.id)
+			redirect_to "/users/" +String(user.id)
+		else
+			flash[:notice] = "User or password invalid"
+			redirect_to root_url
+		end
 	end
 
 	def destroy
-		#complete this method
+		cookies["logged_user"] = ""
+		redirect_to root_url
 	end
 end

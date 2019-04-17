@@ -15,7 +15,7 @@
 	<div class="form-group">
       <%= f.label :phone %>
       <%= f.text_field :phone %>
-  	</div>
+  </div>
 	<div class="form-group">
 	    <%= f.label :password, "Password" %>
 	    <% if @minimum_password_length %>
@@ -23,6 +23,10 @@
 	    <% end %><br/>
 	    <%= f.password_field :password, autocomplete: "off" %>
 	</div>
+  <div class="form-group">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
 	<div class="actions">
 	    <%= f.submit "Sign in" %>
 	</div>

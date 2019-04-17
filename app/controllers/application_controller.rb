@@ -6,12 +6,15 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-	#complete this method
+    id = cookies["logged_user"]
+    id
   end
 
   def is_user_logged_in?
-	#complete this method
-  	logged_in = false
-	if logged_in then true else redirect_to root_path end 
+    user = User.find(cookies["logged_user"].to_i)
+	  if user
+      true
+    else redirect_to root_path
+    end
   end
 end
