@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
 	def new
+		if cookies[:logged_user]!=nil
+			redirect_to "/users/" + current_user
+		end
 	end
 
 	def create
